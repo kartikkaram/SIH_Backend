@@ -4,9 +4,7 @@ import cookieParser from 'cookie-parser';
 import { Error_Handler } from './middlewares/Errors.middlewares.js';
 import { clerkMiddleware } from '@clerk/express';
 import dotenv from "dotenv"
-dotenv.config({
-  path:"src/.env"
-})
+
 
 const app=express()
 const allowedOrigins = [
@@ -32,7 +30,6 @@ app.use(express.static("public"));
 app.use(cookieParser())
 
 
-//app.use("/api/v1/clerk",clerkRouter)
 
 app.use(Error_Handler)
 export default app

@@ -4,7 +4,7 @@ dotenv.config({
 })
 import app from "./app.js"
 import connectDB from "./db/dbConnection.js"
-import { fetchDomains } from "./app.js"
+
 
 
 const PORT =process.env.PORT  || 8001
@@ -16,10 +16,7 @@ const startServer = async () => {
     await connectDB();
     console.log("Database connected");
 
-    await fetchDomains();
-    console.log("Customer domains fetched");
-  
-    app.listen(PORT, () => {
+      app.listen(PORT, () => {
       console.log(`Server is listening at port: ${PORT}`);
 
     });

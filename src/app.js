@@ -3,7 +3,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import { Error_Handler } from './middlewares/Errors.middlewares.js';
 import { clerkMiddleware } from '@clerk/express';
-import dotenv from "dotenv"
+import { userRouter } from './routes/userRoutes.js';
 
 
 const app=express()
@@ -28,7 +28,7 @@ app.use(clerkMiddleware())
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser())
-
+app.use("/api/v1/user", userRouter)
 
 
 app.use(Error_Handler)

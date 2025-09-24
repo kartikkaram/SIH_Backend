@@ -9,11 +9,6 @@ const testSchema = new mongoose.Schema({
   testType: {
     type: String,
     required: true,
-    enum: ["situps", "long-jump"],
-    default: "situps",
-  },
-  instructionsVersion: {
-    type: String,
   },
   videoUrl: {
     type: String,
@@ -26,10 +21,6 @@ const testSchema = new mongoose.Schema({
   },
   sizeBytes: {
     type: Number,
-  },
-  recordedAt: {
-    type: Date,
-    default: Date.now,
   },
   status: {
     type: String,

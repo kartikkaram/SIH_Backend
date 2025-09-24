@@ -7,7 +7,7 @@ import { fetchAthletes } from "../controllers/athletesControllers/fetchAthletes.
 
 const athleteRouter = express.Router();
 
-athleteRouter.post("/clerk", clerkWebhook )
+athleteRouter.post("/clerk", express.raw({ type: 'application/json' }),clerkWebhook )
 athleteRouter.get("/:id", fetchAthleteById )
 athleteRouter.get("/", fetchAthletes )
 athleteRouter.patch("/:id", updateAthleteById )

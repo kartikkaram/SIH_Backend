@@ -33,7 +33,7 @@ const testSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["pending", "scoring", "scored", "error"],
+    enum: ["pending", "scoring", "scored"],
     default: "pending",
   },
   aiScore: {
@@ -45,10 +45,11 @@ const testSchema = new mongoose.Schema({
     default: {},
   },
   adminApproved: {
-    type: Boolean,
-    default: false,
+    type: String,
+    enum: ["pending", "approved", "rejected"],
+    default: "pending",
   },
-  aprovedByAdmin: {
+  approvedByAdmin: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin",
     default: null,
@@ -57,10 +58,8 @@ const testSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+},{
+  timestamps:true
 });
 
 export default mongoose.model("Test", testSchema);

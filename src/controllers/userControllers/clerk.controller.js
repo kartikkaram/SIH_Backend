@@ -32,8 +32,8 @@ export const clerkWebhook = AsyncHandler(async (req, res) => {
         const createdUser = await User.create({
           username: evt.data.username,
           email: evt.data.email_addresses[0].email_address,
-          clerkid: evt.data.id,
-          imageurl: evt.data.image_url
+          clerkId: evt.data.id,
+          imageUrl: evt.data.image_url
         });
 
         if (!createdUser) {
@@ -48,7 +48,7 @@ export const clerkWebhook = AsyncHandler(async (req, res) => {
     }
 
     if (eventType === 'user.updated') {
-      const existingUser = await User.findOne({ clerkid: evt.data.id });
+      const existingUser = await User.findOne({ clerkId: evt.data.id });
 
       if (!existingUser) {
         console.warn('User not found in DB on update:', evt.data.id);
@@ -59,7 +59,7 @@ export const clerkWebhook = AsyncHandler(async (req, res) => {
 
       if (existingUser.username !== evt.data.username) {
         const duplicate = await User.findOne({ username: evt.data.username });
-        if (duplicate && duplicate.clerkid !== evt.data.id) {
+        if (duplicate && duplicate.clerkId !== evt.data.id) {
           // Optional: revert the change in Clerk
           await clerkClient.users.updateUser(evt.data.id, { username: existingUser.username });
           return res.status(200).json(new ApiResponse(200, 'Username already taken — reverted Clerk change', {}));
@@ -69,8 +69,8 @@ export const clerkWebhook = AsyncHandler(async (req, res) => {
         isUpdated = true;
       }
 
-      if (existingUser.imageurl !== evt.data.image_url) {
-        existingUser.imageurl = evt.data.image_url;
+      if (existingUser.imageUrl !== evt.data.image_url) {
+        existingUser.imageUrl = evt.data.image_url;
         isUpdated = true;
       }
 
@@ -83,14 +83,14 @@ export const clerkWebhook = AsyncHandler(async (req, res) => {
     }
 
     if (eventType === 'user.deleted') {
-      const user = await User.findOne({ clerkid: evt.data.id });
+      const user = await User.findOne({ clerkId: evt.data.id });
 
       if (!user) {
         console.warn('User already deleted in DB:', evt.data.id);
         return res.status(200).json(new ApiResponse(200, 'User already deleted', {}));
       }
 
-      await User.deleteOne({ clerkid: evt.data.id });
+      await User.deleteOne({ clerkId: evt.data.id });
     }
 
     return res

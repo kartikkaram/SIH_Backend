@@ -10,18 +10,15 @@ const adminSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  name: {
+  username: {
     type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
+  imageUrl:{
+    type:String
+  }
+},{
+  timestamps:true
 });
 
 export default mongoose.model("Admin", adminSchema);

@@ -1,4 +1,4 @@
-import mongoose from mongoose;
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     clerkId: {
@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     username:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    imageUrl:{
         type:String,
         required:true,
         unique:true
@@ -31,14 +36,8 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: null,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-    },
+},{
+    timestamps:true
 })
 
 export default mongoose.model("User", userSchema);

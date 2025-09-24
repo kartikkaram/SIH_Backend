@@ -1,45 +1,33 @@
-import { Test } from "../../models/test.models.js";
+import  Test  from "../../models/test.models.js";
+import Admin from "../../models/admin.models.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { AsyncHandler } from "../../utils/asyncHandler";
+import { ApiError } from "../../utils/apiError.js";
+import { getAuth } from "@clerk/express";
+
 
 export const adminAction = AsyncHandler(async (req, res) => {
-  try {
-    const { testId, adminApproved, adminNotes } = req.body;
-    const adminId = req.user?._id;
+  const { testId, adminApproved, adminNotes } = req.body;
+  const { userId } = getAuth(req);
 
-    if (!testId) {
-      return res.status(400).json(
-        new ApiResponse(400, "Test Not Found")
-      );
-    }
+  const admin = await Admin.findOne({ clerkId: userId });
+  if (!admin) throw new ApiError(403, "Unauthorized: Admin not found");
 
-    const updatedTest = await Test.findByIdAndUpdate(
-      testId,
-      {
-        adminApproved,
-        adminNotes,
-        approvedByAdmin: adminId,
-      },
-      { new: true }
-    );
+  if (!testId) throw new ApiError(400, "Test ID is required");
 
-    if (!updatedTest) {
-      return res.status(404).json(
-        new ApiResponse(404, "Test Not Found")
-      );
-    }
+  const updatedTest = await Test.findByIdAndUpdate(
+    testId,
+    {
+      adminApproved,
+      adminNotes,
+      approvedByAdmin: admin._id,
+    },
+    { new: true }
+  );
 
-    res
-      .status(200)
-      .json(new ApiResponse(200, "Test Updated Successfully", updatedTest));
-  } catch (err) {
-    return res
-      .status(500)
-      .json(
-        new ApiResponse(
-          500,
-          err.message || "Error while updating test"
-        )
-      );
-  }
+  if (!updatedTest) throw new ApiError(404, "Test not found");
+
+  res.status(200).json(
+    new ApiResponse(200, "Test updated successfully", updatedTest)
+  );
 });

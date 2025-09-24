@@ -1,3 +1,4 @@
+import { getAuth } from "@clerk/express";
 import Test from "../../models/test.models";
 import User from "../../models/user.models";
 import { ApiError } from "../../utils/apiError";

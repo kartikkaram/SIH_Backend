@@ -1,6 +1,6 @@
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { AsyncHandler } from "../../utils/asyncHandler.js";
-import { User } from "../../models/user.models.js";
+import User  from "../../models/user.models.js";
 import { ApiError } from "../../utils/apiError.js";
 
 export const fetchAthletes = AsyncHandler(async (req, res) => {

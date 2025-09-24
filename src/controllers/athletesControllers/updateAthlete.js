@@ -1,9 +1,9 @@
-import { User } from "../../models/user.models.js";
+import  User  from "../../models/user.models.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { AsyncHandler } from "../../utils/asyncHandler.js";
 import { ApiError } from "../../utils/apiError.js";
 
-export const fetchAthleteById = AsyncHandler(async (req, res) => {
+export const updateAthleteById = AsyncHandler(async (req, res) => {
   const athleteId = req.params.id;
   if (!athleteId) throw new ApiError(400, "Athlete ID is required");
 

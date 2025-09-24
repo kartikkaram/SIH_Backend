@@ -1,7 +1,7 @@
-import Test from "../../models/test.models";
-import { ApiError } from "../../utils/apiError";
-import { ApiResponse } from "../../utils/apiResponse";
-import { AsyncHandler } from "../../utils/asyncHandler";
+import Test from "../../models/test.models.js";
+import { ApiError } from "../../utils/apiError.js";
+import { ApiResponse } from "../../utils/apiResponse.js";
+import { AsyncHandler } from "../../utils/asyncHandler.js";
 
 
 

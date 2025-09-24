@@ -1,10 +1,10 @@
-import { Test } from "../../models/test.models.js";
+import  Test  from "../../models/test.models.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { AsyncHandler } from "../../utils/asyncHandler.js";
 import { ApiError } from "../../utils/apiError.js";
 
 
-export const getTestById = AsyncHandler(async (req, res) => {
+export const fetchTestById = AsyncHandler(async (req, res) => {
   const testId = req.params.id;
   if (!testId) throw new ApiError(400, "Test ID is required");
 

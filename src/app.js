@@ -3,7 +3,9 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import { Error_Handler } from './middlewares/Errors.middlewares.js';
 import { clerkMiddleware } from '@clerk/express';
-import { userRouter } from './routes/userRoutes.js';
+import { athleteRouter } from './routes/athleteRoutes.js';
+import { adminRouter } from './routes/adminRoutes.js';
+import { testRouter } from './routes/testRoutes.js';
 
 
 const app=express()
@@ -28,7 +30,9 @@ app.use(clerkMiddleware())
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser())
-app.use("/api/v1/user", userRouter)
+app.use("/api/v1/athlete", athleteRouter)
+app.use("/api/v1/admin", adminRouter)
+app.use("/api/v1/test", testRouter)
 
 
 app.use(Error_Handler)

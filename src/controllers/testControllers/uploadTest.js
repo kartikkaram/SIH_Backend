@@ -1,10 +1,10 @@
 import { getAuth } from "@clerk/express";
-import Test from "../../models/test.models";
-import User from "../../models/user.models";
-import { ApiError } from "../../utils/apiError";
-import { AsyncHandler } from "../../utils/asyncHandler";
-import { uploadToCloudinary } from "../../utils/couldinaryUpload";
-import { getAiScore } from "../../utils/getAIScore";
+import Test from "../../models/test.models.js";
+import User from "../../models/user.models.js";
+import { ApiError } from "../../utils/apiError.js";
+import { AsyncHandler } from "../../utils/asyncHandler.js";
+import { uploadToCloudinary } from "../../utils/couldinaryUpload.js";
+import { getAiScore } from "../../utils/getAIScore.js";
 
 
 

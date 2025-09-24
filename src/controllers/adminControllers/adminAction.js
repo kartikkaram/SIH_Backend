@@ -1,7 +1,7 @@
 import  Test  from "../../models/test.models.js";
 import Admin from "../../models/admin.models.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
-import { AsyncHandler } from "../../utils/asyncHandler";
+import { AsyncHandler } from "../../utils/asyncHandler.js";
 import { ApiError } from "../../utils/apiError.js";
 import { getAuth } from "@clerk/express";
 

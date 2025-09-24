@@ -1,5 +1,5 @@
-import { Test } from "../../models/test.models.js";
-import { User } from "../../models/user.models.js";
+import Test from "../../models/test.models.js";
+import User  from "../../models/user.models.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { AsyncHandler } from "../../utils/asyncHandler.js";
 import { ApiError } from "../../utils/apiError.js";

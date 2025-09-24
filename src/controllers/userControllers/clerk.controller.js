@@ -1,7 +1,7 @@
-import { AsyncHandler } from '../utils/asyncHandler.js';
-import { ApiResponse } from '../utils/apiResponse.js';
+import { AsyncHandler } from '../../utils/asyncHandler.js';
+import { ApiResponse } from '../../utils/apiResponse.js';
 import { verifyWebhook } from '@clerk/express/webhooks';
-import { User } from '../models/user.models.js';
+import { User } from '../../models/user.models.js';
 import { clerkClient } from '@clerk/express';
 
 export const clerkWebhook = AsyncHandler(async (req, res) => {
@@ -10,7 +10,6 @@ export const clerkWebhook = AsyncHandler(async (req, res) => {
     const evt = await verifyWebhook(req);
     const eventType = evt.type;
 
-    debugger
     console.log("webhook: ", evt.type);
 
 

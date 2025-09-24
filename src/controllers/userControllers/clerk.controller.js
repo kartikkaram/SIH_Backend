@@ -4,10 +4,16 @@ import { verifyWebhook } from '@clerk/express/webhooks';
 import  User  from '../../models/user.models.js';
 import { clerkClient } from '@clerk/express';
 
+
+const clerkSecret = process.env.CLERK_WEBHOOK_SECRET;
+
 export const clerkWebhook = AsyncHandler(async (req, res) => {
   try {
 
-    const evt = await verifyWebhook(req);
+  const evt = await verifyWebhook(
+    req, 
+    { signingSecret: clerkSecret }
+  );
     const eventType = evt.type;
 
     console.log("webhook: ", evt.type);

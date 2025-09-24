@@ -5,7 +5,7 @@ import  User  from '../../models/user.models.js';
 import { clerkClient } from '@clerk/express';
 
 
-const clerkSecret = process.env.CLERK_WEBHOOK_SECRET;
+const clerkSecret = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
 
 export const clerkWebhook = AsyncHandler(async (req, res) => {
   try {

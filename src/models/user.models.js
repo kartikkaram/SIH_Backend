@@ -24,6 +24,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    sport:{
+        type: String,
+        enum: ["Athletics", "Boxing", "Wrestling", "Hockey", "Badminton", "Shooting"],
+    },
+    region:{
+        type: String,
+        enum: ["North", "South", "East", "West"],
+    },
+    age: {
+        type: Number,
+        default: null,
+    },
     location: {
         type: Object,
         default: {},

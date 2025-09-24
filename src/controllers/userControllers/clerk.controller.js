@@ -3,17 +3,11 @@ import { ApiResponse } from '../../utils/apiResponse.js';
 import { verifyWebhook } from '@clerk/express/webhooks';
 import  User  from '../../models/user.models.js';
 import { clerkClient } from '@clerk/express';
-import { Webhook } from "svix"
-
-const clerkSecret = process.env.CLERK_WEBHOOK_SECRET;
 
 export const clerkWebhook = AsyncHandler(async (req, res) => {
   try {
 
-  const evt = await verifyWebhook(
-    req, 
-    { signingSecret: process.env.CLERK_WEBHOOK_SECRET }
-  );
+    const evt = await verifyWebhook(req);
     const eventType = evt.type;
 
     console.log("webhook: ", evt.type);
